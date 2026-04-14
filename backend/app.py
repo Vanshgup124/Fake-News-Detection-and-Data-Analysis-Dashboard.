@@ -4,7 +4,7 @@ import pickle
 import re
 
 app = Flask(__name__)
-CORS(app)  # ✅ allows frontend to connect
+CORS(app)  #allows frontend to connect
 
 # Load model and vectorizer
 model = pickle.load(open('model.pkl', 'rb'))
@@ -25,7 +25,7 @@ def predict():
     try:
         data = request.get_json()
 
-        # ✅ safer check
+        # safer check
         if not data or 'text' not in data:
             return jsonify({'error': 'No text provided'}), 400
 
@@ -49,7 +49,7 @@ def predict():
         })
 
     except Exception as e:
-        # ✅ catch unexpected errors
+        # catch unexpected errors
         return jsonify({'error': str(e)}), 500
 
 
