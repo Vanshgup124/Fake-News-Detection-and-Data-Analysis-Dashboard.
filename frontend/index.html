@@ -1,44 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Fake News Detector</title>
-    <link rel="stylesheet" href="style.css"> <!-- ✅ ADD THIS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector & Dashboard</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="background-glow"></div>
+    <div class="container">
+        
+        <header class="app-header">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <h1>TruthLens</h1>
+            </div>
+            <p class="subtitle">AI-Powered Fake News Detection Ecosystem</p>
+        </header>
 
-    <h1>Fake News Detection</h1>
+        <main>
+            <section class="detect-section card glass">
+                <div class="input-group">
+                    <label for="news">Analyze Article Content</label>
+                    <textarea id="news" rows="6" placeholder="Paste the news article or text you want to verify..."></textarea>
+                </div>
+                
+                <button id="check-btn" onclick="checkNews()">
+                    <span class="btn-text">Verify Authenticity</span>
+                    <span class="btn-loader hidden">
+                        <svg class="spinner" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle></svg>
+                    </span>
+                </button>
 
-    <textarea id="news" rows="6" cols="60" placeholder="Enter news here..."></textarea>
-    <br><br>
+                <div id="result-container" class="result fade-in hidden">
+                    <div id="result-icon"></div>
+                    <div class="result-text">
+                        <h2 id="result-title"></h2>
+                        <p id="result-confidence"></p>
+                    </div>
+                </div>
+            </section>
 
-    <button onclick="checkNews()">Check</button>
+            <section class="dashboard-section">
+                <h2>Analysis Dashboard</h2>
+                <div class="dashboard-grid">
+                    
+                    <div class="dashboard-card glass span-2">
+                        <h3>Fake and Real News Word Cloud</h3>
+                        <div class="img-container">
+                            <img src="http://127.0.0.1:5000/images/fake_wordcloud.png" alt="Fake Word Cloud">
+                        </div>
+                    </div>
 
-    <h2 id="result"></h2>
+                    <div class="dashboard-card glass">
+                        <h3>Top Words (Fake News)</h3>
+                        <div class="img-container">
+                            <img src="http://127.0.0.1:5000/images/top_fake_words.png" alt="Top Fake Words">
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card glass">
+                        <h3>Top Words (Real News)</h3>
+                        <div class="img-container">
+                            <img src="http://127.0.0.1:5000/images/top_real_words.png" alt="Top Real Words">
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card glass">
+                        <h3>News Sources</h3>
+                        <div class="img-container">
+                            <img src="http://127.0.0.1:5000/images/news_source.png" alt="News Sources">
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card glass">
+                        <h3>Sentiment Distributions</h3>
+                        <div class="img-container">
+                            <img src="http://127.0.0.1:5000/images/sentiment_distributions.png" alt="Sentiment Distributions">
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card glass span-2">
+                        <h3>Overall Distribution</h3>
+                        <div class="img-container">
+                            <img src="http://127.0.0.1:5000/images/pie_chart.png" alt="Overall Distribution Pie Chart">
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>Fake News Detector &copy; 2024 - 2026</p>
+        </footer>
+
+    </div>
 
     <script src="script.js"></script>
-
-    <h2>Analysis Dashboard</h2>
-
-    <h3>Fake and Real News Word Cloud</h3>
-    <img src="http://127.0.0.1:5000/images/fake_wordcloud.png" width="1000">
-
-    <!-- <h3>Top Words (real News)</h3> -->
-    <img src="http://127.0.0.1:5000/images/top_fake_words.png" width="700">
-
-    <img src="http://127.0.0.1:5000/images/top_real_words.png" width="700">
-
-    <img src="http://127.0.0.1:5000/images/news_source.png" width="700">
-
-    <br>
-    <br>
-
-
-    <!-- <h3>Sentiment Analysis</h3> -->
-    <img src="http://127.0.0.1:5000/images/sentiment_distributions.png" width="700">
-    
-
-    <img src="http://127.0.0.1:5000/images/pie_chart.png" width="700">
-    
-
 </body>
 </html>
