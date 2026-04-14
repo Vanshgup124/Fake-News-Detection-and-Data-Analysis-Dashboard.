@@ -217,6 +217,70 @@ button:disabled {
     margin-top: 0.25rem;
 }
 
+/* Fake Sources Section */
+.sources-section {
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+    padding: 2rem;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.sources-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--danger);
+}
+
+.sources-section p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.sources-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.source-chip {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeIn 0.5s ease;
+}
+
+.source-chip .badge {
+    background: var(--danger);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.spinner-small {
+    width: 24px;
+    height: 24px;
+    animation: rotate 2s linear infinite;
+    color: var(--danger);
+}
+.spinner-small .path {
+    stroke: currentColor;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
 /* Dashboard Section */
 .dashboard-section {
     margin-top: 4rem;

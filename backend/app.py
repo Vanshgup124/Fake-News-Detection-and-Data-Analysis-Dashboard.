@@ -2,6 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pickle
 import re
+import csv
+import os
+from collections import Counter
 
 app = Flask(__name__)
 CORS(app)  #allows frontend to connect
@@ -52,6 +55,27 @@ def predict():
         # catch unexpected errors
         return jsonify({'error': str(e)}), 500
 
+@app.route('/fake_sources', methods=['GET'])
+def get_fake_sources():
+    try:
+        csv_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'data.csv')
+        fake_sources = Counter()
+        with open(csv_path, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                # '0' represents fake news based on the data schema
+                if row.get('label') == '0':
+                    domain = row.get('source_domain', '').strip()
+                    if domain and domain.lower() != 'na':
+                        fake_sources[domain] += 1
+                        
+        top_10 = fake_sources.most_common(10)
+        return jsonify({
+            'success': True,
+            'top_sources': [{'domain': domain, 'count': count} for domain, count in top_10]
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

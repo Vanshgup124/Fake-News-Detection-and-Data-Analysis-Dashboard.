@@ -73,3 +73,29 @@ function checkNews() {
         resultConfidence.innerText = "Failed to reach the server. Make sure the backend is running.";
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetchFakeSources();
+});
+
+function fetchFakeSources() {
+    fetch("http://127.0.0.1:5000/fake_sources")
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById("sources-list");
+            container.innerHTML = "";
+            if (data.success && data.top_sources.length > 0) {
+                data.top_sources.forEach(source => {
+                    const chip = document.createElement("div");
+                    chip.className = "source-chip";
+                    chip.innerHTML = `<span>${source.domain}</span> <span class="badge">${source.count}</span>`;
+                    container.appendChild(chip);
+                });
+            } else {
+                container.innerHTML = "<p>No sources found.</p>";
+            }
+        })
+        .catch(err => {
+            document.getElementById("sources-list").innerHTML = "<p style='color:var(--danger)'>Failed to load sources. Ensure the backend is running.</p>";
+        });
+}
