@@ -1,0 +1,11 @@
+streamlit
+pandas
+plotly
+numpy
+requests
+beautifulsoup4
+scikit-learn
+vaderSentiment
+matplotlib
+wordcloud
+nltk
